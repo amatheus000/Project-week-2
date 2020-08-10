@@ -1,0 +1,54 @@
+header {
+  background: white;
+  border: black;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+    sans-serif;
+  border: 0.25rem solid black;
+  border-radius: 5rem;
+}
+body {
+  background: rgb(214, 0, 30);
+}
+
+main {
+  max-width: 80rem;
+  margin: 6rem auto auto auto;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#user-responses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 3rem;
+}
+
+.user-response {
+  background: white;
+  padding: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 5rem;
+  border: 0.25rem solid black;
+}
+
+.user-response img {
+  height: 10rem;
+  width: 100%;
+  object-fit: cover;
+  border: 0.125rem solid black;
+  border-radius: 0.5rem;
+}
+
+#presentation-text {
+  color: white;
+}
