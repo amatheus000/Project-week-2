@@ -1,5 +1,9 @@
-let response = [];
+let responses = [];
 const userResponsesSection = document.querySelector('#user-responses')
+
+const ageSelect = document.querySelector('#age')
+const favoriteqsrSelect = document.querySelector('#favorite-qsr')
+const searchInput = document.querySelector('#search')
 
 const fetchUserResponses = async () => {
   const response = await fetch(
@@ -53,3 +57,22 @@ const fetchandShowResponses = async () => {
 };
 
 fetchandShowResponses();
+
+const userFilter = user =>{
+  const selectedAge = ageSelect.value
+  const selectedfavoritreqsr = favoriteqsrSelect.value
+  const searchTerm = searchInput.value.toLowerCase()
+  return (selectedAge === "all" || user.age === selectedAge) &&
+  (selectedfavoritreqsr === "all" || user.qsrFavorite === selectedfavoritreqsr) &&
+  (user.firstandLastName.toLowerCase().includes(searchTerm))
+}
+
+const handleFilterInput = () => {
+  const filteredUsers = responses.filter(userFilter)
+  main.innerHTML = filteredUsers.map(renderUserResponse).join("")
+}
+
+
+ageSelect.addEventListener('input', handleFilterInput)
+favoriteqsrSelect.addEventListener('input', handleFilterInput)
+searchInput.addEventListener('input', handleFilterInput)

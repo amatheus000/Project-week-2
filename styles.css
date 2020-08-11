@@ -52,3 +52,13 @@ main {
 #presentation-text {
   color: white;
 }
+
+#controls {
+  margin: 5rem auto 1rem auto;
+  background-color: white;
+  padding: 1rem;
+  max-width: 60rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
