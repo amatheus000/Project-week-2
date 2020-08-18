@@ -4,6 +4,7 @@ const userResponsesSection = document.querySelector('#user-responses')
 const ageSelect = document.querySelector('#age')
 const favoriteqsrSelect = document.querySelector('#favorite-qsr')
 const searchInput = document.querySelector('#search')
+const main = document.querySelector('main')
 
 const fetchUserResponses = async () => {
   const response = await fetch(
@@ -12,6 +13,7 @@ const fetchUserResponses = async () => {
   const data = await response.text();
   const results = Papa.parse(data,{header:true})
   responses = results.data
+  console.log(responses)
 };
 
 // How often do you go to a QSR Restaurant: "Once a month or less"
@@ -59,19 +61,23 @@ const fetchandShowResponses = async () => {
 fetchandShowResponses();
 
 const userFilter = user =>{
+  console.log(user)
   const selectedAge = ageSelect.value
   const selectedfavoritreqsr = favoriteqsrSelect.value
   const searchTerm = searchInput.value.toLowerCase()
-  return (selectedAge === "all" || user.age === selectedAge) &&
-  (selectedfavoritreqsr === "all" || user.qsrFavorite === selectedfavoritreqsr) &&
-  (user.firstandLastName.toLowerCase().includes(searchTerm))
+  console.log(selectedAge)
+  console.log(selectedfavoritreqsr)
+  console.log(searchTerm)
+  return (selectedAge === "All" || user["How old are you?"] === selectedAge) &&
+  (selectedfavoritreqsr === "All" || user["What is your favorite QSR?"].includes(selectedfavoritreqsr)) &&
+  (user["What is your first and last name?"].toLowerCase().includes(searchTerm))
 }
 
 const handleFilterInput = () => {
+  
   const filteredUsers = responses.filter(userFilter)
   main.innerHTML = filteredUsers.map(renderUserResponse).join("")
 }
-
 
 ageSelect.addEventListener('input', handleFilterInput)
 favoriteqsrSelect.addEventListener('input', handleFilterInput)
